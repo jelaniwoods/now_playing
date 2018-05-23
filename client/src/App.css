@@ -21,6 +21,10 @@
 .App-intro {
   font-size: large;
 }
+div, button {
+  margin: .5em;
+  padding: 1em;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
