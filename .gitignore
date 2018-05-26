@@ -1,2 +1,3 @@
 auth-server/config
 temp/config
+temp/node_modules

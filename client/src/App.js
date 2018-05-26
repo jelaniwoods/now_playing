@@ -13,11 +13,15 @@ class App extends Component {
       loggedIn: params.access_token ? true : false,
       nowPlaying: {
         name: 'Not Checked',
-        image: ''
+        image: '',
+        pn: '',
+        images: [],
+        test: ''
       }
     }
     if (params.access_token) {
       spotifyWebApi.setAccessToken(params.access_token);
+      console.log('LOGGED');
     }
   }
   getHashParams() {
@@ -38,21 +42,26 @@ class App extends Component {
             image: response.item.album.images[0].url
           }
         })
+        console.log(this.state.nowPlaying.image)
       })
   }
+
   render() {
     return (
       <div className="App">
-        <a href="http://localhost:8888">
-          <button>Login to Spotify</button>
-        </a>
+        <a href='http://localhost:8888' > Login to Spotify </a>
         <div>
-          Now Playing {this.state.nowPlaying.name}
+          Now Playing: { this.state.nowPlaying.name }
         </div>
-        <img src={this.state.nowPlaying.image} />
-        <button onClick={() => this.getNowPlaying()}>
-        Check Whats Playing
-        </button>
+        <div>
+          <img src={this.state.nowPlaying.image} style={{ height: 300, width: 300 }}/>
+        </div>
+        { this.state.loggedIn &&
+          <button onClick={() => this.getNowPlaying()}>
+            Check Now Playing
+          </button>
+        }
+
       </div>
     );
   }
